@@ -7,15 +7,17 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MeteoritesView: View {
+    
+    let meteoritesModel = MeteoritesViewModel()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        NavigationView {
+            List(meteoritesModel.meteorites) { meteorite in
+                NavigationLink(destination: MapView(region: meteorite.region)) {
+                    Text(meteorite.name)
+                }
+            }
+        }
     }
 }

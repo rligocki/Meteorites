@@ -11,7 +11,7 @@ import SwiftUI
 struct MeteoritesApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MeteoritesView()
         }
     }
 }
