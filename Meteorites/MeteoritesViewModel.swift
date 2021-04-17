@@ -7,18 +7,34 @@
 
 import Foundation
 import RealmSwift
+import Alamofire
 
 class MeteoritesViewModel: ObservableObject {
-    let realm = try! Realm()
-    
-    @Published var meteorites: [Meteorite] = [
-        Meteorite(name: "1", mass: 10, year: 1900, lat: 0, long: 1),
-        Meteorite(name: "2", mass: 10, year: 2000, lat: 1, long: 0),
-        Meteorite(name: "3", mass: 20, year: 2100, lat: 2, long: -1)
+    let realm: Realm
+    let baseURL: String = "https://data.nasa.gov/resource/gh4g-9sfh.json"
+    let parameters: Parameters = [
+        "$$app_token": "FlXstmJ3UJxqDW86oL7bOFHVk",
+        "$where": "year >= \"2011-01-01T00:00:00.000\"",
+        "$order": "mass DESC"
     ]
     
+    @Published var meteorites: [Meteorite] = []
+    
     init(){
+        realm = try! Realm()
+        
         meteorites = Array(realm.objects(Meteorite.self))
+        
+        fetchData()
+    }
+    
+    func fetchData(){
+        let request = AF.request(baseURL,
+                                 method: .get,
+                                 parameters: parameters)
+            request.responseJSON { (data) in
+              print(data)
+            }
     }
     
 }
