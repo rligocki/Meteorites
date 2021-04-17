@@ -8,21 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		30671E16262A32550053DF5E /* MeteoritesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30671E15262A32550053DF5E /* MeteoritesApp.swift */; };
-		30671E18262A32550053DF5E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30671E17262A32550053DF5E /* ContentView.swift */; };
+		30671E18262A32550053DF5E /* MeteoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30671E17262A32550053DF5E /* MeteoritesView.swift */; };
 		30671E1A262A32580053DF5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30671E19262A32580053DF5E /* Assets.xcassets */; };
 		30671E1D262A32580053DF5E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30671E1C262A32580053DF5E /* Preview Assets.xcassets */; };
 		30671E27262A32870053DF5E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 30671E26262A32870053DF5E /* Alamofire */; };
 		30671E2B262A33DD0053DF5E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 30671E2A262A33DD0053DF5E /* RealmSwift */; };
 		30671E2D262A33DD0053DF5E /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 30671E2C262A33DD0053DF5E /* Realm */; };
+		30671E30262A34F50053DF5E /* MeteoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30671E2F262A34F50053DF5E /* MeteoritesViewModel.swift */; };
+		30671E34262A35250053DF5E /* Meteorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30671E33262A35250053DF5E /* Meteorite.swift */; };
+		30671E39262A3A8F0053DF5E /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30671E38262A3A8F0053DF5E /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		30671E12262A32550053DF5E /* Meteorites.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meteorites.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30671E15262A32550053DF5E /* MeteoritesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoritesApp.swift; sourceTree = "<group>"; };
-		30671E17262A32550053DF5E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		30671E17262A32550053DF5E /* MeteoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoritesView.swift; sourceTree = "<group>"; };
 		30671E19262A32580053DF5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30671E1C262A32580053DF5E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		30671E1E262A32580053DF5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30671E2F262A34F50053DF5E /* MeteoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoritesViewModel.swift; sourceTree = "<group>"; };
+		30671E33262A35250053DF5E /* Meteorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meteorite.swift; sourceTree = "<group>"; };
+		30671E38262A3A8F0053DF5E /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +64,11 @@
 		30671E14262A32550053DF5E /* Meteorites */ = {
 			isa = PBXGroup;
 			children = (
+				30671E33262A35250053DF5E /* Meteorite.swift */,
+				30671E2F262A34F50053DF5E /* MeteoritesViewModel.swift */,
 				30671E15262A32550053DF5E /* MeteoritesApp.swift */,
-				30671E17262A32550053DF5E /* ContentView.swift */,
+				30671E17262A32550053DF5E /* MeteoritesView.swift */,
+				30671E38262A3A8F0053DF5E /* MapView.swift */,
 				30671E19262A32580053DF5E /* Assets.xcassets */,
 				30671E1E262A32580053DF5E /* Info.plist */,
 				30671E1B262A32580053DF5E /* Preview Content */,
@@ -153,7 +162,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30671E18262A32550053DF5E /* ContentView.swift in Sources */,
+				30671E18262A32550053DF5E /* MeteoritesView.swift in Sources */,
+				30671E30262A34F50053DF5E /* MeteoritesViewModel.swift in Sources */,
+				30671E39262A3A8F0053DF5E /* MapView.swift in Sources */,
+				30671E34262A35250053DF5E /* Meteorite.swift in Sources */,
 				30671E16262A32550053DF5E /* MeteoritesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
