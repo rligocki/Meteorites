@@ -28,7 +28,7 @@ struct MeteoriteRowView: View {
     var body: some View {
         ZStack(alignment: .leading) {
 
-            Color.darkPurple
+            Color.accentColor
             HStack {
                 CircleView(mass: meteorite.mass)
 
@@ -62,9 +62,8 @@ struct TitleView: View{
                 Text("\(recLong)°")
                     .foregroundColor(.white)
                     .padding(.bottom, 5)
-                //                    HStack {
-                //                        Metadata(name: "\(meteorite.fall)")
-                //                    }
+            } else {
+                Text("No position")
             }
 
         }
@@ -78,15 +77,15 @@ struct CircleView: View{
     var body: some View {
         ZStack {
             Circle()
-                .fill(Color.brown)
+                .fill(Color.white)
 
             VStack {
-                Text(String(format: "%.0f", mass))
+                Text(String(format: "%.2f", mass / 1000))
                     .font(.system(size: 15, weight: .bold))
-                    .foregroundColor(.white)
-                Text("g")
+                    //.foregroundColor(.white)
+                Text("kg")
                     .font(.caption)
-                    .foregroundColor(.white)
+                    //.foregroundColor(.white)
             }
         }
         .frame(width: 70, height: 70, alignment: .center)
