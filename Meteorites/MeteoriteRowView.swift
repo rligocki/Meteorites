@@ -12,14 +12,6 @@ extension Color {
     public init(decimalRed red: Double, green: Double, blue: Double) {
         self.init(red: red / 255, green: green / 255, blue: blue / 255)
     }
-
-//    public static var flatPurpleDarkBackground: Color {
-//        return Color(decimalRed: 50, green: 0, blue: 50)
-//    }
-//
-//    public static var flatPurpleDarkCardBackground: Color {
-//        return Color(decimalRed: 70, green: 0, blue: 70)
-//    }
     
     public static var brown: Color {
         return Color(decimalRed: 90, green: 50, blue: 0)
