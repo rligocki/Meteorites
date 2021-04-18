@@ -16,8 +16,9 @@ struct MeteoritesView: View {
             List(meteoritesModel.meteorites) { meteorite in
                 NavigationLink(destination: MapView(region: meteorite.region)) {
                     MeteoriteRowView(meteorite: meteorite)
-                }.disabled(meteorite.fall != "Found" || (meteorite.recLat == 0 && meteorite.recLong == 0))
-            }.navigationBarTitle("Meteorites", displayMode: .inline)
+                }.disabled(meteorite.recLat == 0 && meteorite.recLong == 0)
+            }
+            .navigationBarTitle("Fallen meteorites",displayMode: .inline)
         }
     }
 }
