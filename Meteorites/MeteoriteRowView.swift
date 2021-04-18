@@ -14,7 +14,10 @@ extension Color {
     }
     
     public static var brown: Color {
-        return Color(decimalRed: 90, green: 50, blue: 0)
+        return Color(decimalRed: 90, green: 60, blue: 0)
+    }
+    public static var darkPurple: Color {
+        return Color(decimalRed: 75, green: 0, blue: 80)
     }
 }
 
@@ -25,7 +28,7 @@ struct MeteoriteRowView: View {
     var body: some View {
         ZStack(alignment: .leading) {
 
-            Color.purple
+            Color.darkPurple
             HStack {
                 CircleView(mass: meteorite.mass)
 
@@ -78,10 +81,10 @@ struct CircleView: View{
                 .fill(Color.brown)
 
             VStack {
-                Text("\(mass)")
+                Text(String(format: "%.0f", mass))
                     .font(.system(size: 15, weight: .bold))
                     .foregroundColor(.white)
-                Text("kg")
+                Text("g")
                     .font(.caption)
                     .foregroundColor(.white)
             }
