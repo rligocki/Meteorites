@@ -37,7 +37,7 @@ class MeteoritesViewModel: ObservableObject {
     func fetchData(){
         var fetchURL = URLComponents(string: baseURL)!
         fetchURL.queryItems = [URLQueryItem(name: "$$app_token", value: "FlXstmJ3UJxqDW86oL7bOFHVk"),
-                               URLQueryItem(name: "$where", value: "year >= \"2013-01-01T00:00:00.000\"")]
+                               URLQueryItem(name: "$where", value: "year >= \"2011-01-01T00:00:00.000\"")]
         
         let request = URLRequest(url: fetchURL.url!)
         URLSession.shared.dataTaskPublisher(for: request)
