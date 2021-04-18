@@ -9,7 +9,9 @@ import Foundation
 import MapKit
 import RealmSwift
 
-final class Meteorite: Object, Identifiable, Decodable{
+final class Meteorite: Object, Identifiable, Decodable, Comparable{
+    
+    
     @objc dynamic var name: String
     @objc dynamic var mass: Double
     @objc dynamic var year: Int
@@ -71,6 +73,10 @@ final class Meteorite: Object, Identifiable, Decodable{
         
         name = try values.decode(String.self, forKey: .name)
         fall = try values.decode(String.self, forKey: .fall)
+    }
+    
+    static func < (lhs: Meteorite, rhs: Meteorite) -> Bool {
+        return lhs.mass > rhs.mass
     }
     
     static func convert(year: String) ->  Int? {
