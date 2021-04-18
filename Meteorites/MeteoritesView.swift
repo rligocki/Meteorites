@@ -9,15 +9,15 @@ import SwiftUI
 
 struct MeteoritesView: View {
     
-    let meteoritesModel = MeteoritesViewModel()
+    @ObservedObject var meteoritesModel = MeteoritesViewModel()
     
     var body: some View {
         NavigationView {
             List(meteoritesModel.meteorites) { meteorite in
                 NavigationLink(destination: MapView(region: meteorite.region)) {
-                    Text(meteorite.name)
-                }
-            }
+                    MeteoriteRowView(meteorite: meteorite)
+                }.disabled(meteorite.fall != "Found" || (meteorite.recLat == 0 && meteorite.recLong == 0))
+            }.navigationBarTitle("Meteorites", displayMode: .inline)
         }
     }
 }
