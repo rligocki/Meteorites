@@ -12,6 +12,7 @@ import SwiftUI
 
 class MeteoritesViewModel: ObservableObject {
     let realm: Realm
+    let defaults = UserDefaults.standard
     
     let baseURL: String = "https://data.nasa.gov/resource/gh4g-9sfh.json"
     var storage = Set<AnyCancellable>()
@@ -30,11 +31,16 @@ class MeteoritesViewModel: ObservableObject {
             do {
                 realm = try Realm(configuration: deleteManager)
             } catch {
-                fatalError("Failed to instantiate: \(error.localizedDescription)")
+                fatalError("Realm: Failed to start db")
             }
         }
+        
         self.meteorites = Array(realm.objects(Meteorite.self))
-        fetchData()
+        
+        if defaults.double(forKey: "last-update") < Date().timeIntervalSinceReferenceDate - 24 * 60 * 60 {
+            defaults.set(Date().timeIntervalSinceReferenceDate, forKey: "last-update")
+            fetchData()
+        }
     }
     
     func fetchData() {
