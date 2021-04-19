@@ -14,11 +14,11 @@ struct MeteoritesView: View {
     var body: some View {
         NavigationView {
             List(meteoritesModel.meteorites) { meteorite in
-                NavigationLink(destination: MapView(region: meteorite.region)) {
+                NavigationLink(destination: MapView(meteorite: meteorite, region: meteorite.region)) {
                     MeteoriteRowView(meteorite: meteorite)
                 }.disabled(meteorite.recLat == 0 && meteorite.recLong == 0)
             }
-            .navigationBarTitle("Fallen meteorites",displayMode: .inline)
+            .navigationBarTitle("Meteorite list",displayMode: .inline)
         }
     }
 }

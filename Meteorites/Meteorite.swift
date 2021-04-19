@@ -29,6 +29,11 @@ final class Meteorite: Object, Identifiable, Decodable, Comparable{
                                   span: MKCoordinateSpan(latitudeDelta: 0.5,
                                                          longitudeDelta: 0.5))
     }
+    var location: Location {
+        return Location(title: name,
+                        coordinate: CLLocationCoordinate2D(latitude: recLat,
+                                                           longitude: recLong))
+    }
     
 //    dynamic let id: String
 //    dynamic let nameType: String
