@@ -11,12 +11,14 @@
 		30671E18262A32550053DF5E /* MeteoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30671E17262A32550053DF5E /* MeteoritesView.swift */; };
 		30671E1A262A32580053DF5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30671E19262A32580053DF5E /* Assets.xcassets */; };
 		30671E1D262A32580053DF5E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30671E1C262A32580053DF5E /* Preview Assets.xcassets */; };
-		30671E27262A32870053DF5E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 30671E26262A32870053DF5E /* Alamofire */; };
 		30671E2B262A33DD0053DF5E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 30671E2A262A33DD0053DF5E /* RealmSwift */; };
 		30671E2D262A33DD0053DF5E /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 30671E2C262A33DD0053DF5E /* Realm */; };
 		30671E30262A34F50053DF5E /* MeteoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30671E2F262A34F50053DF5E /* MeteoritesViewModel.swift */; };
 		30671E34262A35250053DF5E /* Meteorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30671E33262A35250053DF5E /* Meteorite.swift */; };
 		30671E39262A3A8F0053DF5E /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30671E38262A3A8F0053DF5E /* MapView.swift */; };
+		30671E45262C53F00053DF5E /* MeteoriteRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30671E44262C53F00053DF5E /* MeteoriteRowView.swift */; };
+		30671E4B262D8E4C0053DF5E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30671E4A262D8E4C0053DF5E /* Location.swift */; };
+		30671E5A262DA7000053DF5E /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30671E59262DA7000053DF5E /* ErrorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,10 @@
 		30671E2F262A34F50053DF5E /* MeteoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoritesViewModel.swift; sourceTree = "<group>"; };
 		30671E33262A35250053DF5E /* Meteorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meteorite.swift; sourceTree = "<group>"; };
 		30671E38262A3A8F0053DF5E /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		30671E40262B31730053DF5E /* Meteorites.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Meteorites.entitlements; sourceTree = "<group>"; };
+		30671E44262C53F00053DF5E /* MeteoriteRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoriteRowView.swift; sourceTree = "<group>"; };
+		30671E4A262D8E4C0053DF5E /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		30671E59262DA7000053DF5E /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +44,6 @@
 			files = (
 				30671E2D262A33DD0053DF5E /* Realm in Frameworks */,
 				30671E2B262A33DD0053DF5E /* RealmSwift in Frameworks */,
-				30671E27262A32870053DF5E /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,10 +69,14 @@
 		30671E14262A32550053DF5E /* Meteorites */ = {
 			isa = PBXGroup;
 			children = (
+				30671E40262B31730053DF5E /* Meteorites.entitlements */,
 				30671E33262A35250053DF5E /* Meteorite.swift */,
+				30671E4A262D8E4C0053DF5E /* Location.swift */,
 				30671E2F262A34F50053DF5E /* MeteoritesViewModel.swift */,
 				30671E15262A32550053DF5E /* MeteoritesApp.swift */,
 				30671E17262A32550053DF5E /* MeteoritesView.swift */,
+				30671E59262DA7000053DF5E /* ErrorView.swift */,
+				30671E44262C53F00053DF5E /* MeteoriteRowView.swift */,
 				30671E38262A3A8F0053DF5E /* MapView.swift */,
 				30671E19262A32580053DF5E /* Assets.xcassets */,
 				30671E1E262A32580053DF5E /* Info.plist */,
@@ -94,6 +103,7 @@
 				30671E0E262A32550053DF5E /* Sources */,
 				30671E0F262A32550053DF5E /* Frameworks */,
 				30671E10262A32550053DF5E /* Resources */,
+				30671E52262D94770053DF5E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -101,7 +111,6 @@
 			);
 			name = Meteorites;
 			packageProductDependencies = (
-				30671E26262A32870053DF5E /* Alamofire */,
 				30671E2A262A33DD0053DF5E /* RealmSwift */,
 				30671E2C262A33DD0053DF5E /* Realm */,
 			);
@@ -133,7 +142,6 @@
 			);
 			mainGroup = 30671E09262A32550053DF5E;
 			packageReferences = (
-				30671E25262A32870053DF5E /* XCRemoteSwiftPackageReference "Alamofire" */,
 				30671E29262A33DD0053DF5E /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = 30671E13262A32550053DF5E /* Products */;
@@ -157,6 +165,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		30671E52262D94770053DF5E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		30671E0E262A32550053DF5E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -164,9 +192,12 @@
 			files = (
 				30671E18262A32550053DF5E /* MeteoritesView.swift in Sources */,
 				30671E30262A34F50053DF5E /* MeteoritesViewModel.swift in Sources */,
+				30671E45262C53F00053DF5E /* MeteoriteRowView.swift in Sources */,
 				30671E39262A3A8F0053DF5E /* MapView.swift in Sources */,
 				30671E34262A35250053DF5E /* Meteorite.swift in Sources */,
 				30671E16262A32550053DF5E /* MeteoritesApp.swift in Sources */,
+				30671E4B262D8E4C0053DF5E /* Location.swift in Sources */,
+				30671E5A262DA7000053DF5E /* ErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +325,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Meteorites/Meteorites.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Meteorites/Preview Content\"";
 				DEVELOPMENT_TEAM = 8VYL42BQV9;
@@ -306,8 +338,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rligocki.Meteorites;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -316,6 +349,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Meteorites/Meteorites.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Meteorites/Preview Content\"";
 				DEVELOPMENT_TEAM = 8VYL42BQV9;
@@ -328,8 +362,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rligocki.Meteorites;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};
@@ -357,14 +392,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		30671E25262A32870053DF5E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.4.2;
-			};
-		};
 		30671E29262A33DD0053DF5E /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa";
@@ -376,11 +403,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		30671E26262A32870053DF5E /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 30671E25262A32870053DF5E /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
 		30671E2A262A33DD0053DF5E /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 30671E29262A33DD0053DF5E /* XCRemoteSwiftPackageReference "realm-cocoa" */;
