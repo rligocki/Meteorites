@@ -11,12 +11,13 @@ import Combine
 
 class MeteoritesViewModel: ObservableObject {
     let realm: Realm
+    
     let baseURL: String = "https://data.nasa.gov/resource/gh4g-9sfh.json"
     var storage = Set<AnyCancellable>()
     
     @Published var meteorites: [Meteorite] = []
     
-    init(){
+    init() {
         do {
             realm = try Realm()
         } catch {
@@ -34,14 +35,14 @@ class MeteoritesViewModel: ObservableObject {
         fetchData()
     }
     
-    func fetchData(){
+    func fetchData() {
         var fetchURL = URLComponents(string: baseURL)!
         fetchURL.queryItems = [URLQueryItem(name: "$$app_token", value: "FlXstmJ3UJxqDW86oL7bOFHVk"),
                                URLQueryItem(name: "$where", value: "year >= \"2011-01-01T00:00:00.000\"")]
         
         let request = URLRequest(url: fetchURL.url!)
         URLSession.shared.dataTaskPublisher(for: request)
-            .tryMap() { element -> Data in
+            .tryMap { element -> Data in
                 guard let httpResponse = element.response as? HTTPURLResponse,
                       httpResponse.statusCode == 200 else {
                     throw URLError(.badServerResponse)
@@ -50,20 +51,23 @@ class MeteoritesViewModel: ObservableObject {
             }
             .decode(type: [Meteorite].self, decoder: JSONDecoder())
             .receive(on: RunLoop.main)
-            .sink(receiveCompletion: {
-                print ("Received completion: \($0).")
-                try! self.realm.write {
-                    self.realm.deleteAll()
-
-                    for meteorite in self.meteorites {
-                        self.realm.add(meteorite)
+            .sink(receiveCompletion: {_ in
+                do {
+                    try self.realm.write {
+                        self.realm.deleteAll()
+                        
+                        for meteorite in self.meteorites {
+                            self.realm.add(meteorite)
+                        }
                     }
+                } catch {
+                    print("error")
                 }
             },
             receiveValue: { meteorites in
                 self.meteorites = meteorites
                 self.meteorites.sort()
             })
-            .store(in:&self.storage)
+            .store(in: &self.storage)
     }
 }

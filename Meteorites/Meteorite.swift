@@ -9,8 +9,7 @@ import Foundation
 import MapKit
 import RealmSwift
 
-final class Meteorite: Object, Identifiable, Decodable, Comparable{
-    
+final class Meteorite: Object, Identifiable, Decodable, Comparable {
     
     @objc dynamic var name: String
     @objc dynamic var mass: Double
@@ -45,7 +44,7 @@ final class Meteorite: Object, Identifiable, Decodable, Comparable{
 //    dynamic let geolocationState: String
 //    dynamic let geolocationZip: String
     
-    init(name: String, mass: Double, year: Int, fall: String, lat: Double, long: Double){
+    init(name: String, mass: Double, year: Int, fall: String, lat: Double, long: Double) {
         self.name = name
         self.mass = mass
         self.year = year
@@ -54,7 +53,7 @@ final class Meteorite: Object, Identifiable, Decodable, Comparable{
         self.recLong = 0
     }
     
-    override init(){
+    override init() {
         self.name = "TestName"
         self.mass = 1
         self.year = 69
@@ -84,7 +83,7 @@ final class Meteorite: Object, Identifiable, Decodable, Comparable{
         return lhs.mass > rhs.mass
     }
     
-    static func convert(year: String) ->  Int? {
+    static func convert(year: String) -> Int? {
         let dateFormatterGet = DateFormatter()
         let calendar = Calendar.current
         
@@ -94,4 +93,3 @@ final class Meteorite: Object, Identifiable, Decodable, Comparable{
         return calendar.component(.year, from: date)
     }
 }
-
