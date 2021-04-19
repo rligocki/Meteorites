@@ -18,7 +18,10 @@ struct MeteoritesView: View {
                     MeteoriteRowView(meteorite: meteorite)
                 }.disabled(meteorite.recLat == 0 && meteorite.recLong == 0)
             }
-            .navigationBarTitle("Meteorite list",displayMode: .inline)
+            .navigationBarTitle("Meteorites list",displayMode: .inline)
+            .toolbar {
+                Text("Total: \(meteoritesModel.meteorites.count)")
+            }
         }
     }
 }
