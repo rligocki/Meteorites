@@ -8,20 +8,25 @@
 import SwiftUI
 
 struct MeteoritesView: View {
-    
-    @ObservedObject var meteoritesModel = MeteoritesViewModel()
+    @ObservedObject var meteoritesViewModel = MeteoritesViewModel()
     
     var body: some View {
-        NavigationView {
-            List(meteoritesModel.meteorites) { meteorite in
-                NavigationLink(destination: MapView(meteorite: meteorite, region: meteorite.region)) {
-                    MeteoriteRowView(meteorite: meteorite)
-                }.disabled(meteorite.recLat == 0 && meteorite.recLong == 0)
+        ZStack {
+            NavigationView {
+                
+                List(meteoritesViewModel.meteorites) { meteorite in
+                    NavigationLink(destination: MapView(meteorite: meteorite, region: meteorite.region)) {
+                        MeteoriteRowView(meteorite: meteorite)
+                    }.disabled(meteorite.recLat == 0 && meteorite.recLong == 0)
+                }
+                .navigationBarTitle("Meteorites list", displayMode: .inline)
+                .toolbar {
+                    Text("Total: \(meteoritesViewModel.meteorites.count)")
+                }
             }
-            .navigationBarTitle("Meteorites list", displayMode: .inline)
-            .toolbar {
-                Text("Total: \(meteoritesModel.meteorites.count)")
-            }
+            ErrorView(text: meteoritesViewModel.errorMessage,
+                          color: meteoritesViewModel.errorColor,
+                          show: $meteoritesViewModel.showError)
         }
     }
 }

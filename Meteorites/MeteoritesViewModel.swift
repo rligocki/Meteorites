@@ -8,6 +8,7 @@
 import Foundation
 import RealmSwift
 import Combine
+import SwiftUI
 
 class MeteoritesViewModel: ObservableObject {
     let realm: Realm
@@ -15,6 +16,9 @@ class MeteoritesViewModel: ObservableObject {
     let baseURL: String = "https://data.nasa.gov/resource/gh4g-9sfh.json"
     var storage = Set<AnyCancellable>()
     
+    @Published var showError: Bool = false
+    @Published var errorMessage: String = "Error"
+    @Published var errorColor: UIColor = .red
     @Published var meteorites: [Meteorite] = []
     
     init() {
@@ -51,7 +55,7 @@ class MeteoritesViewModel: ObservableObject {
             }
             .decode(type: [Meteorite].self, decoder: JSONDecoder())
             .receive(on: RunLoop.main)
-            .sink(receiveCompletion: {_ in
+            .sink(receiveCompletion: { [self]_ in
                 do {
                     try self.realm.write {
                         self.realm.deleteAll()
@@ -61,7 +65,7 @@ class MeteoritesViewModel: ObservableObject {
                         }
                     }
                 } catch {
-                    print("error")
+                    showError(message: "Databse: Failed to write data", color: .red)
                 }
             },
             receiveValue: { meteorites in
@@ -70,4 +74,21 @@ class MeteoritesViewModel: ObservableObject {
             })
             .store(in: &self.storage)
     }
+    
+    func showError(message: String, color: UIColor) {
+        self.animateAndDelayWithSeconds(0.5) {
+            self.errorMessage = message
+            self.errorColor = color
+            self.showError = true
+        }
+        self.animateAndDelayWithSeconds(4) { self.showError = false }
+    }
+    
+    func animateAndDelayWithSeconds(_ seconds: TimeInterval, action: @escaping () -> Void) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                withAnimation(.easeInOut) {
+                    action()
+                }
+            }
+        }
 }
