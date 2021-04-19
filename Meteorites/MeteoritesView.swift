@@ -19,14 +19,20 @@ struct MeteoritesView: View {
                         MeteoriteRowView(meteorite: meteorite)
                     }.disabled(meteorite.recLat == 0 && meteorite.recLong == 0)
                 }
-                .navigationBarTitle("Meteorites list", displayMode: .inline)
-                .toolbar {
-                    Text("Total: \(meteoritesViewModel.meteorites.count)")
-                }
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar(content: {
+                    ToolbarItem(placement: .principal, content: {
+                        Text("Meteorites list")
+                    })
+                    ToolbarItem(placement: .navigationBarTrailing, content: {
+                        Text("Count: \(meteoritesViewModel.meteorites.count)")
+                    })
+                    
+                })
             }
-            ErrorView(text: meteoritesViewModel.errorMessage,
-                          color: meteoritesViewModel.errorColor,
-                          show: $meteoritesViewModel.showError)
+            ErrorView(text: $meteoritesViewModel.errorMessage,
+                      color: $meteoritesViewModel.errorColor,
+                      show: $meteoritesViewModel.showError)
         }
     }
 }

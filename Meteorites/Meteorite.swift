@@ -34,15 +34,15 @@ final class Meteorite: Object, Identifiable, Decodable, Comparable {
                                                            longitude: recLong))
     }
     
-//    dynamic let id: String
-//    dynamic let nameType: String
-//    dynamic let recClass: String
-//    dynamic let recLat: String
-//    dynamic let recLong: String
-//    dynamic let geolocationAddress: String
-//    dynamic let geolocationCity: String
-//    dynamic let geolocationState: String
-//    dynamic let geolocationZip: String
+    //    dynamic let id: String
+    //    dynamic let nameType: String
+    //    dynamic let recClass: String
+    //    dynamic let recLat: String
+    //    dynamic let recLong: String
+    //    dynamic let geolocationAddress: String
+    //    dynamic let geolocationCity: String
+    //    dynamic let geolocationState: String
+    //    dynamic let geolocationZip: String
     
     init(name: String, mass: Double, year: Int, fall: String, lat: Double, long: Double) {
         self.name = name
@@ -64,7 +64,7 @@ final class Meteorite: Object, Identifiable, Decodable, Comparable {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-
+        
         let massDouble = Double(try (values.decodeIfPresent(String.self, forKey: .mass) ?? "0.0") )
         let recLatDouble = Double(try values.decodeIfPresent(String.self, forKey: .reclat) ?? "37.2431")
         let recLongDouble = Double(try values.decodeIfPresent(String.self, forKey: .reclong) ?? "115.7930")

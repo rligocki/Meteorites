@@ -18,7 +18,7 @@ struct MapView: View {
             annotationItems: [meteorite.location],
             annotationContent: { (location) -> MapPin in
                 MapPin(coordinate: location.coordinate, tint: .blue)
-        })
-        .edgesIgnoringSafeArea(.all)
+            })
+            .edgesIgnoringSafeArea(.all)
     }
 }

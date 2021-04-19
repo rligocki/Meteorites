@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ErrorView: View {
-    @State var text: String
-    @State var color: UIColor
+    @Binding var text: String
+    @Binding var color: UIColor
     @Binding var show: Bool
     
     var body: some View {
@@ -19,12 +19,12 @@ struct ErrorView: View {
                 HStack {
                     Spacer()
                     if show {
-                    Text("\(text)")
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.white)
-                        .frame(width: geometry.size.width * 0.95, height: 44.0)
-                        .background(Color(color))
-                        .cornerRadius(8)
+                        Text("\(text)")
+                            .fontWeight(.bold)
+                            .foregroundColor(Color.black)
+                            .frame(width: geometry.size.width * 0.95, height: 44.0)
+                            .background(Color(color))
+                            .cornerRadius(8)
                     }
                     Spacer()
                 }

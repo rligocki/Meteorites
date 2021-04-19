@@ -33,9 +33,7 @@ class MeteoritesViewModel: ObservableObject {
                 fatalError("Failed to instantiate: \(error.localizedDescription)")
             }
         }
-        
         self.meteorites = Array(realm.objects(Meteorite.self))
-        
         fetchData()
     }
     
@@ -45,27 +43,36 @@ class MeteoritesViewModel: ObservableObject {
                                URLQueryItem(name: "$where", value: "year >= \"2011-01-01T00:00:00.000\"")]
         
         let request = URLRequest(url: fetchURL.url!)
-        URLSession.shared.dataTaskPublisher(for: request)
+        
+        URLSession(configuration: URLSessionConfiguration.ephemeral).dataTaskPublisher(for: request)
+            .timeout(.milliseconds(2000), scheduler: DispatchQueue.main, options: .none, customError: {
+                return URLSession.DataTaskPublisher.Failure(_nsError: NSError())
+            })
             .tryMap { element -> Data in
                 guard let httpResponse = element.response as? HTTPURLResponse,
                       httpResponse.statusCode == 200 else {
+                    
                     throw URLError(.badServerResponse)
                 }
                 return element.data
             }
             .decode(type: [Meteorite].self, decoder: JSONDecoder())
-            .receive(on: RunLoop.main)
-            .sink(receiveCompletion: { [self]_ in
-                do {
-                    try self.realm.write {
-                        self.realm.deleteAll()
-                        
-                        for meteorite in self.meteorites {
-                            self.realm.add(meteorite)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure:
+                    self.showError(message: "URLSession: HTTP connection timeout", color: .yellow)
+                case .finished:
+                    do {
+                        try self.realm.write {
+                            self.realm.deleteAll()
+                            for meteorite in self.meteorites {
+                                self.realm.add(meteorite)
+                            }
                         }
+                    } catch {
+                        self.showError(message: "Database: Failed to write data", color: .red)
                     }
-                } catch {
-                    showError(message: "Databse: Failed to write data", color: .red)
                 }
             },
             receiveValue: { meteorites in
@@ -76,19 +83,19 @@ class MeteoritesViewModel: ObservableObject {
     }
     
     func showError(message: String, color: UIColor) {
-        self.animateAndDelayWithSeconds(0.5) {
+        animateAndDelayWithSeconds(0.5) { [self] in
             self.errorMessage = message
             self.errorColor = color
             self.showError = true
         }
-        self.animateAndDelayWithSeconds(4) { self.showError = false }
+        animateAndDelayWithSeconds(4) { self.showError = false }
     }
     
     func animateAndDelayWithSeconds(_ seconds: TimeInterval, action: @escaping () -> Void) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-                withAnimation(.easeInOut) {
-                    action()
-                }
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            withAnimation(.easeInOut) {
+                action()
             }
         }
+    }
 }
