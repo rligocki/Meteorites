@@ -8,16 +8,13 @@
 import SwiftUI
 
 struct MeteoriteRowView: View {
-    
     let meteorite: Meteorite
     
     var body: some View {
         ZStack(alignment: .leading) {
-            
             Color.accentColor
             HStack {
                 CircleView(mass: meteorite.mass)
-                
                 TitleView(name: meteorite.name,
                           recLat: meteorite.recLat,
                           recLong: meteorite.recLong)
@@ -74,23 +71,5 @@ struct CircleView: View {
             }
         }
         .frame(width: 70, height: 70, alignment: .center)
-    }
-}
-
-struct MetadataView: View {
-    
-    let name: String
-    let fontSize: CGFloat = 12.0
-    
-    var body: some View {
-        ZStack {
-            Text(name)
-                .font(.system(size: fontSize, weight: .regular))
-                .lineLimit(2)
-                .foregroundColor(.white)
-                .padding(5)
-                .background(Color.green)
-                .cornerRadius(5)
-        }
     }
 }
