@@ -34,16 +34,6 @@ final class Meteorite: Object, Identifiable, Decodable, Comparable {
                                                            longitude: recLong))
     }
     
-    //    dynamic let id: String
-    //    dynamic let nameType: String
-    //    dynamic let recClass: String
-    //    dynamic let recLat: String
-    //    dynamic let recLong: String
-    //    dynamic let geolocationAddress: String
-    //    dynamic let geolocationCity: String
-    //    dynamic let geolocationState: String
-    //    dynamic let geolocationZip: String
-    
     init(name: String, mass: Double, year: Int, fall: String, lat: Double, long: Double) {
         self.name = name
         self.mass = mass

@@ -20,5 +20,6 @@ struct MapView: View {
                 MapPin(coordinate: location.coordinate, tint: .blue)
             })
             .edgesIgnoringSafeArea(.all)
+            .navigationTitle(meteorite.name)
     }
 }

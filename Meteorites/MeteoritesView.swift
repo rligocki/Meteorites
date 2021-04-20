@@ -25,7 +25,7 @@ struct MeteoritesView: View {
                         Text("Meteorites list")
                     })
                     ToolbarItem(placement: .navigationBarTrailing, content: {
-                        Text("Count: \(meteoritesViewModel.meteorites.count)")
+                        Text("Total: \(meteoritesViewModel.meteorites.count)")
                     })
                     
                 })
