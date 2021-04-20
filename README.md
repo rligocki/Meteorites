@@ -12,11 +12,10 @@
 - [x] Show metadata in ListView
 - [x] Order meteorites by their mass
 - [x] Show map view with pin annotation
-- [x] Persistant meteorites storage
+- [x] Persistent meteorites storage
 - [x] Data update once per 24 hours
 - [x] Simple Github README.md
 - [x] Clean code
-- [ ] Unit tests
 
 ## Requirements
 
