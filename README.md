@@ -1,5 +1,5 @@
 # Meteorites
-> Example project to test my knowledges of Swift, SwiftUI, Combine and Realm.  
+> Example project to test my knowledge of Swift, SwiftUI, Combine and Realm.  
 
 [![Swift Version][swift-image]][swift-url]
 <!---[![Build Status][travis-image]][travis-url] --->
