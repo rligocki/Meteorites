@@ -11,15 +11,21 @@ import RealmSwift
 
 final class Meteorite: Object, Identifiable, Decodable, Comparable {
     
-    @objc dynamic var name: String
-    @objc dynamic var mass: Double
-    @objc dynamic var year: Int
-    @objc dynamic var fall: String
-    @objc dynamic var recLat: Double
-    @objc dynamic var recLong: Double
+    @objc dynamic var name: String = ""
+    @objc dynamic var mass: Double = 0.0
+    @objc dynamic var year: String = ""
+    @objc dynamic var fall: String = ""
+    @objc dynamic var recLat: Double = -180
+    @objc dynamic var recLong: Double = -180
     
-    enum CodingKeys: String, CodingKey {
-        case name, mass, year, fall, reclat, reclong
+    var yearInt: Int {
+        let dateFormatterGet = DateFormatter()
+        let calendar = Calendar.current
+        
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        guard let date = dateFormatterGet.date(from: year) else { return -1 }
+        
+        return calendar.component(.year, from: date)
     }
     
     var region: MKCoordinateRegion {
@@ -34,52 +40,30 @@ final class Meteorite: Object, Identifiable, Decodable, Comparable {
                                                            longitude: recLong))
     }
     
-    init(name: String, mass: Double, year: Int, fall: String, lat: Double, long: Double) {
-        self.name = name
-        self.mass = mass
-        self.year = year
-        self.fall = fall
-        self.recLat = 0
-        self.recLong = 0
+    enum CodingKeys: String, CodingKey {
+        case name, mass, year, fall, reclat, reclong
     }
     
     override init() {
-        self.name = "TestName"
-        self.mass = 1
-        self.year = 69
-        self.fall = "Found"
-        self.recLat = 0
-        self.recLong = 0
     }
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
+    
+        guard let massDouble = Double(try values.decode(String.self, forKey: .mass)) else { return }
+        guard let recLatDouble = Double(try values.decode(String.self, forKey: .reclat)) else { return }
+        guard let recLongDouble = Double(try values.decode(String.self, forKey: .reclong)) else { return }
         
-        let massDouble = Double(try (values.decodeIfPresent(String.self, forKey: .mass) ?? "0.0") )
-        let recLatDouble = Double(try values.decodeIfPresent(String.self, forKey: .reclat) ?? "37.2431")
-        let recLongDouble = Double(try values.decodeIfPresent(String.self, forKey: .reclong) ?? "115.7930")
-        let stringYear = try values.decodeIfPresent(String.self, forKey: .year) ?? "1969"
+        mass = massDouble
+        recLat = recLatDouble
+        recLong = recLongDouble
         
-        year = Meteorite.convert(year: stringYear) ?? 0
-        mass = massDouble ?? 0
-        recLat = recLatDouble ?? 37.2431
-        recLong = recLongDouble ?? 115.7930
-        
+        year = try values.decode(String.self, forKey: .year)
         name = try values.decode(String.self, forKey: .name)
         fall = try values.decode(String.self, forKey: .fall)
     }
     
     static func < (lhs: Meteorite, rhs: Meteorite) -> Bool {
         return lhs.mass > rhs.mass
-    }
-    
-    static func convert(year: String) -> Int? {
-        let dateFormatterGet = DateFormatter()
-        let calendar = Calendar.current
-        
-        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
-        guard let date = dateFormatterGet.date(from: year) else { return -1 }
-        
-        return calendar.component(.year, from: date)
     }
 }
