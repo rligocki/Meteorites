@@ -10,8 +10,8 @@ import MapKit
 
 struct MapView: View {
     
-    @State var meteorite: Meteorite = Meteorite()
-    @State var region: MKCoordinateRegion = MKCoordinateRegion()
+    @State var meteorite: Meteorite
+    @State var region: MKCoordinateRegion
     
     var body: some View {
         Map(coordinateRegion: $region,
