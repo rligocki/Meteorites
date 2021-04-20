@@ -50,9 +50,9 @@ final class Meteorite: Object, Identifiable, Decodable, Comparable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
     
-        guard let massDouble = Double(try values.decode(String.self, forKey: .mass)) else { return }
-        guard let recLatDouble = Double(try values.decode(String.self, forKey: .reclat)) else { return }
-        guard let recLongDouble = Double(try values.decode(String.self, forKey: .reclong)) else { return }
+        guard let massDouble = Double(try values.decode(String.self, forKey: .mass)) else { fatalError()}
+        guard let recLatDouble = Double(try values.decode(String.self, forKey: .reclat)) else { fatalError() }
+        guard let recLongDouble = Double(try values.decode(String.self, forKey: .reclong)) else { fatalError() }
         
         mass = massDouble
         recLat = recLatDouble
